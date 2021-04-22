@@ -75,7 +75,7 @@ object AkkaQuickstart extends App {
 
   //#main-send-messages
   greeterMain ! SayHello("FirstMessageIsNotWorking")
-  greeterMain ! SayHello("SecondMessageIsNotWorking")
+  greeterMain ! SayHello("SecondMessageIsWorking")
   //#main-send-messages
 }
 //#main-class
