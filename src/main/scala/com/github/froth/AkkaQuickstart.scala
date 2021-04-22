@@ -57,12 +57,11 @@ object GreeterMain {
 class GreeterMain(context: ActorContext[SayHello])
     extends AbstractBehavior[SayHello](context) {
   private val greeter = context.spawn(Greeter(), "greeter")
-  override def onMessage(msg: SayHello): Behavior[SayHello] =
-    Behaviors.receiveMessage { message =>
-      val replyTo = context.spawn(GreeterBot(max = 3), message.name)
-      greeter ! Greeter.Greet(message.name, replyTo)
-      Behaviors.same
-    }
+  override def onMessage(msg: SayHello): Behavior[SayHello] = {
+    val replyTo = context.spawn(GreeterBot(max = 3), msg.name)
+    greeter ! Greeter.Greet(msg.name, replyTo)
+    Behaviors.same
+  }
 }
 //#greeter-main
 
